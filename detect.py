@@ -143,7 +143,7 @@ def detect(save_img=False):
             # Save results (image with detections)
             if save_img:
                 if dataset.mode == 'image' or coco:
-                    cv2.imwrite(save_path, im0)
+                    cv2.imwrite(save_path + '.jpeg', im0)
                     print(f" The image with the result is saved in: {save_path}")
                 else:  # 'video' or 'stream'
                     if vid_path != save_path:  # new video
