@@ -110,6 +110,7 @@ def detect(save_img=False):
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # img.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            frame_path = str(save_dir / 'frames' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
                 # Rescale boxes from img_size to im0 size
@@ -143,7 +144,7 @@ def detect(save_img=False):
             # Save results (image with detections)
             if save_img:
                 if coco:
-                    cv2.imwrite(save_path + '.jpeg', im0)
+                    cv2.imwrite(frame_path, im0)
                 elif dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
                     print(f" The image with the result is saved in: {save_path}")
